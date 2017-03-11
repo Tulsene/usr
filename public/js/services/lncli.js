@@ -571,6 +571,22 @@
 			var data = { type: type };
 			return $http.post(serverUrl(API.NEWADDRESS), data);
 		};
+		
+		this.askForDelivery = function(amount) {
+			var deferred = $q.defer();
+			_this.getInfo(true).then(function(response) {
+				var data = { pubkey: response.data.identity_pubkey, amt: amount };
+				var supplierServerUrl = _this.getConfigValue(config.keys.SUPPLIER_SERVER_URL);
+				$http.post(supplierServerUrl + "/api/askfordelivery", data).then(function (response) {
+					deferred.resolve(response);
+				}, function (err) {
+					deferred.reject(err);
+				});
+			}, function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		};
 
 		Object.seal(this);
 	}

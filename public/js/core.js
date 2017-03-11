@@ -21,7 +21,8 @@ lnwebcli.constant("config", {
 		AUTO_REFRESH: "autorefresh",
 		MAX_LOG_BUFFER: "maxlogbuffer",
 		MAX_NOTIF_BUFFER: "maxnotifbuffer",
-		LOG_NOTIFY_PATTERN: "lognotifypattern"
+		LOG_NOTIFY_PATTERN: "lognotifypattern",
+		SUPPLIER_SERVER_URL: "supplierserverurl"
 	},
 	defaults: {
 		AUTO_REFRESH: 60000, // 1 minute
