@@ -1,0 +1,55 @@
+{
+  "name": "lncliweb",
+  "version": "1.0.0",
+  "description": "lnd web client",
+  "productName": "lncliweb",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mably/lncli-web.git"
+  },
+  "keywords": [
+    "lnd",
+    "lncli",
+    "web",
+    "client",
+    "nodejs",
+    "grpc",
+    "lightning",
+    "network",
+    "bitcoin"
+  ],
+  "author": "Francois Masurel",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mably/lncli-web/issues"
+  },
+  "homepage": "https://github.com/mably/lncli-web#readme",
+  "dependencies": {
+    "basic-auth": "^1.1.0",
+    "bitcore-lib": "^0.13.19",
+    "body-parser": "^1.16.0",
+    "commander": "^2.9.0",
+    "debug": "^2.6.1",
+    "express": "^4.14.1",
+    "greenlock": "^2.1.12",
+    "grpc": "^1.1.1",
+    "le-acme-core": "^2.0.9",
+    "le-challenge-fs": "^2.0.8",
+    "le-store-certbot": "^2.0.3",
+    "method-override": "^2.3.7",
+    "socket.io": "^1.7.2",
+    "winston": "^2.3.1",
+    "winston-daily-rotate-file": "^1.4.4"
+  },
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "electron": "^1.4.1",
+    "electron-packager": "^8.5.2",
+    "electron-rebuild": "^1.5.7",
+    "electron-winstaller": "^2.5.2"
+  }
+}
