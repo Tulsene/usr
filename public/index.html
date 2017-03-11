@@ -78,6 +78,8 @@
 	<script src="./js/controllers/editsettings.js"></script>
 	<script src="./js/controllers/newaddress.js"></script>
 	<script src="./js/controllers/queryroute.js"></script>
+	<script src="./js/controllers/user.js"></script>
+	<script src="./js/controllers/askfordelivery.js"></script>
 	<script src="./js/directives/getinfo.js"></script>
 	<script src="./js/directives/getnetworkinfo.js"></script>
 	<script src="./js/directives/walletbalance.js"></script>
@@ -138,12 +140,14 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-6">
-		  <div class="panel panel-default">
+		  <div class="panel panel-default" ng-controller="UserCtrl">
 			<div class="panel-heading clearfix">
 			  <span class="panel-title">User</i></span>
 			</div>
 			<div class="panel-body">
-			  Hello world!
+			  <div class="btn-group" role="group" aria-label="User buttons">
+			    <button type="button" class="btn btn-default" ng-click="askForDelivery()">Ask for delivery</button>
+			  </div>
 			</div>
 		  </div>
 		</div><!-- /.col-sm-6 -->
