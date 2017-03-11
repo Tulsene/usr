@@ -22,7 +22,9 @@ lnwebcli.constant("config", {
 		MAX_LOG_BUFFER: "maxlogbuffer",
 		MAX_NOTIF_BUFFER: "maxnotifbuffer",
 		LOG_NOTIFY_PATTERN: "lognotifypattern",
-		SUPPLIER_SERVER_URL: "supplierserverurl"
+		SUPPLIER_SERVER_URL: "supplierserverurl",
+		SUPPLIER_SERVER_LOGIN: "supplierserverlogin",
+		SUPPLIER_SERVER_PWD: "supplierserverpwd"
 	},
 	defaults: {
 		AUTO_REFRESH: 60000, // 1 minute
