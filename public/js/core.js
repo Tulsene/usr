@@ -1,5 +1,5 @@
 // public/core.js
-var lnwebcli = angular.module("lnwebcli", ["ui.bootstrap", "LocalStorageModule", "ngclipboard", "ngSanitize", "ngToast", "angular-uuid", "angular-web-notification"]);
+var lnwebcli = angular.module("lnwebcli", ["ui.bootstrap", "LocalStorageModule", "ngclipboard", "ngSanitize", "ngToast", "angular-uuid", "angular-web-notification", "base64"]);
 
 lnwebcli.config(["localStorageServiceProvider", function (localStorageServiceProvider) {
 	localStorageServiceProvider
@@ -45,6 +45,7 @@ lnwebcli.constant("config", {
 		INVOICE_WS: "invoice",
 		OPENCHANNEL_WS: "openchannel",
 		CLOSECHANNEL_WS: "closechannel",
+		SUPPLIER_METER_UPDATED: "meterupdated",
 	},
 	modals: {
 		NEW_ADDRESS: {
