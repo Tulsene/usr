@@ -1,9 +1,9 @@
 "use strict";
 (function () {
 
-	lnwebcli.service("lncli", ["$rootScope", "$filter", "$http", "$timeout", "$interval", "$q", "ngToast", "localStorageService", "config", "uuid", "webNotification", "lnwebcliUtils", service]);
+	lnwebcli.service("lncli", ["$rootScope", "$filter", "$http", "$timeout", "$interval", "$q", "$base64", "ngToast", "localStorageService", "config", "uuid", "webNotification", "lnwebcliUtils", service]);
 
-	function service($rootScope, $filter, $http, $timeout, $interval, $q, ngToast, localStorageService, config, uuid, webNotification, utils) {
+	function service($rootScope, $filter, $http, $timeout, $interval, $q, $base64, ngToast, localStorageService, config, uuid, webNotification, utils) {
 
 		var _this = this;
 
@@ -585,7 +585,7 @@
 				var supplierServerLogin = _this.getConfigValue(config.keys.SUPPLIER_SERVER_LOGIN);
 				var supplierServerPwd = _this.getConfigValue(config.keys.SUPPLIER_SERVER_PWD);
 				if (supplierServerLogin && supplierServerPwd) {
-					var auth = window.btoa(supplierServerLogin + ":" + supplierServerPwd);
+					var auth = $base64.encode(supplierServerLogin + ":" + supplierServerPwd);
 					req.headers = { "Authorization": "Basic " + auth };
 				}
 				$http(req).then(function (response) {
@@ -598,6 +598,28 @@
 			});
 			return deferred.promise;
 		};
+
+		var supplierSocket = function() {
+			var supplierServerUrl = _this.getConfigValue(config.keys.SUPPLIER_SERVER_URL);
+			if (supplierServerUrl) {
+				var supplierServerUrl = _this.getConfigValue(config.keys.SUPPLIER_SERVER_URL);
+				var supplierServerLogin = _this.getConfigValue(config.keys.SUPPLIER_SERVER_LOGIN);
+				var supplierServerPwd = _this.getConfigValue(config.keys.SUPPLIER_SERVER_PWD);
+				var supplierQuery;
+				if (supplierServerLogin && supplierServerPwd) {
+					supplierQuery = "auth=" + encodeURIComponent($base64.encode(supplierServerLogin + ":" + supplierServerPwd));
+				} else {
+					supplierQuery = "";
+				}
+				var supplierSecure = (supplierServerUrl.substr(0, 5) === "https");
+				return io.connect(supplierServerUrl, { query: supplierQuery, secure: supplierSecure });
+			}
+		}();
+
+		supplierSocket.on(config.events.SUPPLIER_METER_UPDATED, function(data) {
+			console.log("Supplier meter updated:", data);
+			_this.notify(config.notif.SUCCESS, "Meter updated by supplier: " + data.data.memo + ", amount = " + data.data.value);
+		});
 
 		Object.seal(this);
 	}
