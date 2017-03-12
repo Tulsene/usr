@@ -577,7 +577,18 @@
 			_this.getInfo(true).then(function(response) {
 				var data = { pubkey: response.data.identity_pubkey, amt: amount };
 				var supplierServerUrl = _this.getConfigValue(config.keys.SUPPLIER_SERVER_URL);
-				$http.post(supplierServerUrl + "/api/askfordelivery", data).then(function (response) {
+				var req = {
+					method: "POST",
+					url: supplierServerUrl + "/api/askfordelivery",
+					data: data
+				};
+				var supplierServerLogin = _this.getConfigValue(config.keys.SUPPLIER_SERVER_LOGIN);
+				var supplierServerPwd = _this.getConfigValue(config.keys.SUPPLIER_SERVER_PWD);
+				if (supplierServerLogin && supplierServerPwd) {
+					var auth = window.btoa(supplierServerLogin + ":" + supplierServerPwd);
+					req.headers = { "Authorization": "Basic " + auth };
+				}
+				$http(req).then(function (response) {
 					deferred.resolve(response);
 				}, function (err) {
 					deferred.reject(err);
