@@ -605,11 +605,9 @@
 				var supplierServerUrl = _this.getConfigValue(config.keys.SUPPLIER_SERVER_URL);
 				var supplierServerLogin = _this.getConfigValue(config.keys.SUPPLIER_SERVER_LOGIN);
 				var supplierServerPwd = _this.getConfigValue(config.keys.SUPPLIER_SERVER_PWD);
-				var supplierQuery;
+				var supplierQuery = "type=user";
 				if (supplierServerLogin && supplierServerPwd) {
-					supplierQuery = "auth=" + encodeURIComponent($base64.encode(supplierServerLogin + ":" + supplierServerPwd));
-				} else {
-					supplierQuery = "";
+					supplierQuery = "&auth=" + encodeURIComponent($base64.encode(supplierServerLogin + ":" + supplierServerPwd));
 				}
 				var supplierSecure = (supplierServerUrl.substr(0, 5) === "https");
 				return io.connect(supplierServerUrl, { query: supplierQuery, secure: supplierSecure });
