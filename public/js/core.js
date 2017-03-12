@@ -28,6 +28,7 @@ lnwebcli.constant("config", {
 	},
 	defaults: {
 		AUTO_REFRESH: 60000, // 1 minute
+		AUTO_REFRESH_MIN: 15000, // 15 seconds
 		MAX_LOG_BUFFER: 500, // 500 lines of logs max
 		MAX_NOTIF_BUFFER: 500, // 500 lines of notifications max
 		LOG_NOTIFY_PATTERN: "\\[ERR\\]"

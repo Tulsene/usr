@@ -393,6 +393,14 @@
 			}
 			return deferred.promise;
 		}
+		
+		this.getAutoRefreshDelay = function() {
+			var autoRefresh = _this.getConfigValue(config.keys.AUTO_REFRESH, config.defaults.AUTO_REFRESH);
+			if (autoRefresh < config.keys.AUTO_REFRESH_MIN) {
+				autoRefresh = config.keys.AUTO_REFRESH_MIN;
+			}
+			return autoRefresh;
+		}
 
 		this.getAddresses = function() {
 			var addresses = addressesCache ? addressesCache : fetchAddresses();
