@@ -15,8 +15,7 @@
 
 		$scope.updateNextRefresh = function () {
 			$timeout.cancel($scope.nextRefresh);
-			$scope.nextRefresh = $timeout($scope.refresh,
-				lncli.getConfigValue(config.keys.AUTO_REFRESH, config.defaults.AUTO_REFRESH));
+			$scope.nextRefresh = $timeout($scope.refresh, lncli.getAutoRefreshDelay());
 		}
 
 		$scope.askForDelivery = function() {
